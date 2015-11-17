@@ -1,5 +1,6 @@
 # Testing Project for Udacity FrontEnd Nanodegree
 
+
 ## Project Purpose 
 
 This project is for the Udacity FrontEnd Nanodegree Project, and is meant for learning and practice test driven development using the Jasmine library for Javascript. 
@@ -7,6 +8,11 @@ This project is for the Udacity FrontEnd Nanodegree Project, and is meant for le
 ## How To Use
 
 Download the repository to your desktop and open index.html in your browser. 
+
+## Additional Test
+
+Wrote an extra test suite to check if external links opened in a new page. This test passes after 
+a quick edit index.html to add target="blank" to the entry-link class
 
 ## Collaboration
 
