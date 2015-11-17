@@ -91,6 +91,33 @@ $(function() {
             it('When new feed is loaded content changes', function() {
                  expect($('.entry-link').text()).not.toBe(oldFeed);     
             });
+
     }); // End "New Feed Selection"
+
+    //TO DO: ADD NEW TEST HERE: 
+    
+    // describe('New Feed Selection', function() {
+    //      /* This test that ensures when a new feed is loaded
+    //      * by the loadFeed function that the content actually changes. */
+
+
+    //         //Load feed 1, wait for async load to finish, then call done() with the callback
+    //         beforeEach(function(done) {    
+    //             loadFeed(1, done); 
+    //         });
+
+    //         //Store text content of feed one, load feed two, wait for the feed to load
+    //         // then call done() with the callback
+    //         beforeEach(function(done) {    
+    //            oldFeed = $('.entry-link').text();            
+    //            loadFeed(2, done); 
+  
+    //         });
+
+    //         it('When new feed is loaded content changes', function() {
+    //              expect($('.entry-link').text()).not.toBe(oldFeed);     
+    //         });
+
+    // }); // End "New Feed Selection"
 
 }());

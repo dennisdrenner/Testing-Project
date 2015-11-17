@@ -1,3 +1,21 @@
+# Testing Project for Udacity FrontEnd Nanodegree
+
+## Project Purpose 
+
+This project is for the Udacity FrontEnd Nanodegree Project, and is meant for learning and practice test driven development using the Jasmine library for Javascript. 
+
+## How To Use
+
+Download the repository to your desktop and open index.html in your browser. 
+
+## Collaboration
+
+Not sought. 
+
+
+# Below is original README from Udacity
+
+
 # Project Overview
 
 In this project you are given a web-based application that reads RSS feeds. The original developer of this application clearly saw the value in testing, they've already included [Jasmine](http://jasmine.github.io/) and even started writing their first test suite! Unfortunately, they decided to move on to start their own company and we're now left with an application with an incomplete test suite. That's where you come in.
