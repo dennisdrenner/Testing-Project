@@ -15,18 +15,28 @@ $(function() {
          * allFeeds variable has been defined and that it is not
          * empty. */
 
-            it('are defined', function() {
-                expect(allFeeds).toBeDefined();
-                expect(allFeeds.length).not.toBe(0);
-            });
+        it('Are defined', function() {
+            expect(allFeeds).toBeDefined();
+            expect(allFeeds.length).not.toBe(0);
+        });
 
-            // Loop through allFeeds and make sure each has a URL defined
-            it('Have a defined URL which is not empty', function() {
-                for (i=0; i<allFeeds.length; i++) {
-                    expect(allFeeds[i].url).toBeDefined();
-                    expect(allFeeds[i].url).not.toBe('');
-                }
-            });
+        // Loop through allFeeds and make sure each has a URL defined
+        it('Have a defined URL which is not empty', function() {
+            for (var i=0; i<allFeeds.length; i++) {
+                expect(allFeeds[i].url).toBeDefined();
+                expect(allFeeds[i].url).not.toBe('');
+            }
+        });
+
+        //Write a test that loops through each feed in the allFeeds object
+        // and ensures it has a name defined and that the name is not empty.
+        it('Have a name defined and is not empty', function() {
+            for (var i=0; i<allFeeds.length; i++) {
+                expect(allFeeds[i].name).toBeDefined();
+                expect(allFeeds[i].name).not.toBe('');
+            }
+        });
+
 
     });  //End RSS feeds suite 
 
@@ -35,38 +45,38 @@ $(function() {
     describe('The Menu', function() {        
         /* Test that menu is hidden by default and visibility of the menu
         changes when menu icon is clicked */
-            it('Has menu hidden by default', function() {
-                expect($('body').hasClass('menu-hidden')).toBe(true);
-            });
+        it('Has menu hidden by default', function() {
+            expect($('body').hasClass('menu-hidden')).toBe(true);
+        });
 
-            it('Menu visibility changes on click', function() {
-                $('.menu-icon-link').trigger('click');
-                expect($('body').hasClass('menu-hidden')).toBe(false);
-                $('.menu-icon-link').trigger('click');
-                expect($('body').hasClass('menu-hidden')).toBe(true);
-            });
+        it('Menu visibility changes on click', function() {
+            $('.menu-icon-link').trigger('click');
+            expect($('body').hasClass('menu-hidden')).toBe(false);
+            $('.menu-icon-link').trigger('click');
+            expect($('body').hasClass('menu-hidden')).toBe(true);
+        });
 
     }); //End 'The Menu' suite
 
 
     describe('Initial entries', function() {
- 
+
          // Test ensures when the loadFeed
          // * function is called and completes its work, there is at least
          // * a single .entry element within the .feed container.
          
-
-            beforeEach(function(done) {
+        beforeEach(function(done) {
         // Second argument in loadFeed is a callback that runs once
         // feed has been loaded. In this case, we use the Jasmine done function as the
         // callback
-                loadFeed(1, done);  
-            });
+            loadFeed(1, done);  
+        });
 
-        //If there is no entry, the text contents of .entry-link are an empty string
-            it('loadFeed results in at least one entry', function() {
-                 expect($('.entry-link').text()).not.toBe('');
-            });
+        //Check that there is at least one article entry
+        it('loadFeed results in at least one entry', function() {
+            expect($('.feed .entry-link').length).toBeGreaterThan(0);
+        });
+
     }); // End "Initial entries" suite 
   
       
@@ -74,33 +84,49 @@ $(function() {
          /* This test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes. */
 
+        var $oldFeed;
 
-            //Load feed 1, wait for async load to finish, then call done() with the callback
-            beforeEach(function(done) {    
-                loadFeed(1, done); 
-            });
+        // //Load feed 1, wait for async load to finish, then call done() with the callback
+        // beforeEach(function(done) {    
+        //     loadFeed(1, done); 
+        // });
 
-            //Store text content of feed one, load feed two, wait for the feed to load
-            // then call done() with the callback
-            beforeEach(function(done) {    
-               oldFeed = $('.entry-link').text();            
-               loadFeed(2, done); 
-  
-            });
+        // //Store text content of feed one, load feed two, wait for the feed to load
+        // // then call done() with the callback
+        // beforeEach(function(done) {    
+        //    $oldFeed = $('.entry-link').text();            
+        //    loadFeed(2, done); 
+        // });
 
-            it('When new feed is loaded content changes', function() {
-                 expect($('.entry-link').text()).not.toBe(oldFeed);     
+        // it('When new feed is loaded content changes', function() {
+        //      expect($('.entry-link').text()).not.toBe($oldFeed);     
+        // });
+
+
+        beforeEach(function(done) {    
+            loadFeed(1, done); 
+            $oldFeed = $('.entry-link').text();    
+            console.log("OLD FEED--", $oldFeed);
+        });
+
+
+        it('When new feed is loaded content changes 2', function(done) {
+            loadFeed(2, function() {
+                newFeed = $('.entry-link').text();
+                expect(newFeed).not.toEqual($oldFeed);
+                done();
             });
+        });
 
     }); // End "New Feed Selection"
 
 
     describe('External Links Open As New Tab', function() {
-            it('Clicked article opens on new page', function() {
-                expect($('.entry-link').attr('target')).toBe('blank');     
-            });
+
+        it('Clicked article opens on new page', function() {
+            expect($('.entry-link').attr('target')).toBe('_blank');     
+        });
 
     }); // End "New Feed Selection"
-
 
 }());
